@@ -1,4 +1,5 @@
 import { getItem } from "./storage.js";
+import "./styles.css";
 
 const listElem = document.querySelector(".list");
 
