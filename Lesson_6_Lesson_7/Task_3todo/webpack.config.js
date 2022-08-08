@@ -46,6 +46,10 @@ module.exports = (evl, argv) => {
         template: "./src/index.html",
       }),
     ],
+    devServer: {
+      port: 9000,
+      hot: true,
+    },
   };
   if (isProduction) {
     config.plugins.push(
