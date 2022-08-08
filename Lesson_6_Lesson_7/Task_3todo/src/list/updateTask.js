@@ -1,14 +1,14 @@
-import { renderTasks } from "./renderTask.js";
-import { getItem, setItem } from "./storage.js";
-import { updateTasks, getTasksList } from "./tasksGateWay.js";
+import renderTasks from './renderTask';
+import { getItem, setItem } from './storage';
+import { updateTasks, getTasksList } from './tasksGateWay';
 
-export const onToggleTask = (e) => {
-  const isCheckbox = e.target.classList.contains("list-item__checkbox");
+export default (e) => {
+  const isCheckbox = e.target.classList.contains('list-item__checkbox');
 
   if (!isCheckbox) {
     return;
   }
-  const tasksList = getItem("tasksList");
+  const tasksList = getItem('tasksList');
   const taskId = e.target.dataset.id;
 
   const done = e.target.checked;
@@ -22,7 +22,7 @@ export const onToggleTask = (e) => {
   updateTasks(taskId, updatedTask)
     .then(() => getTasksList())
     .then((newTasksList) => {
-      setItem("tasksList", newTasksList);
+      setItem('tasksList', newTasksList);
       renderTasks();
     });
 };

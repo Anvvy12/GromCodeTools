@@ -1,12 +1,12 @@
-import { initTodoListHandlers } from "./list/todoList.js";
-import { renderTasks } from "./list/renderTask.js";
-import { getTasksList } from "./list/tasksGateWay.js";
-import { setItem } from "./list/storage.js";
-import "./styles.css";
+import initTodoListHandlers from './list/todoList';
+import renderTasks from './list/renderTask';
+import { getTasksList } from './list/tasksGateWay';
+import { setItem } from './list/storage';
+import './styles.css';
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   getTasksList().then((tasksList) => {
-    setItem("tasksList", tasksList);
+    setItem('tasksList', tasksList);
     renderTasks();
   });
 
@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const onStorageChange = (e) => {
-  if (e.key === "tasksList") renderTasks();
+  if (e.key === 'tasksList') renderTasks();
 };
 
-window.addEventListener("storage", onStorageChange);
+window.addEventListener('storage', onStorageChange);
 
 // 1 get data from server
 // 2 save data to front stogare

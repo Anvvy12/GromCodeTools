@@ -1,7 +1,7 @@
-import { getItem } from "./storage.js";
-import "../styles.css";
+import { getItem } from './storage';
+import '../styles.css';
 
-const listElem = document.querySelector(".list");
+const listElem = document.querySelector('.list');
 
 // eslint-disable-next-line consistent-return
 const compareTasks = (a, b) => {
@@ -11,37 +11,37 @@ const compareTasks = (a, b) => {
 };
 
 const createCheckbox = ({ done, id }) => {
-  const checkboxElem = document.createElement("input");
-  checkboxElem.setAttribute("type", "checkbox");
-  checkboxElem.setAttribute("data-id", id);
+  const checkboxElem = document.createElement('input');
+  checkboxElem.setAttribute('type', 'checkbox');
+  checkboxElem.setAttribute('data-id', id);
   checkboxElem.checked = done;
-  checkboxElem.classList.add("list-item__checkbox");
+  checkboxElem.classList.add('list-item__checkbox');
 
   return checkboxElem;
 };
 
 const createListItem = ({ text, done, id }) => {
-  const listItemElem = document.createElement("li");
-  listItemElem.classList.add("list-item", "list__item");
+  const listItemElem = document.createElement('li');
+  listItemElem.classList.add('list-item', 'list__item');
   const checkboxElem = createCheckbox({ done, id });
   if (done) {
-    listItemElem.classList.add("list-item_done");
+    listItemElem.classList.add('list-item_done');
   }
 
-  const textElem = document.createElement("span");
-  textElem.classList.add("list-item__text");
+  const textElem = document.createElement('span');
+  textElem.classList.add('list-item__text');
   textElem.textContent = text;
 
-  const deleteBtnElem = document.createElement("button");
-  deleteBtnElem.classList.add("list-item__delete-btn");
+  const deleteBtnElem = document.createElement('button');
+  deleteBtnElem.classList.add('list-item__delete-btn');
 
   listItemElem.append(checkboxElem, textElem, deleteBtnElem);
   return listItemElem;
 };
 
-export const renderTasks = () => {
-  const tasksList = getItem("tasksList") || [];
-  listElem.innerHTML = "";
+export default () => {
+  const tasksList = getItem('tasksList') || [];
+  listElem.innerHTML = '';
   const tasksElems = tasksList.sort(compareTasks).map(createListItem);
 
   listElem.append(...tasksElems);

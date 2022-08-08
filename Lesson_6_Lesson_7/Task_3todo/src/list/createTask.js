@@ -1,15 +1,15 @@
-import { renderTasks } from "./renderTask.js";
-import { getItem, setItem } from "./storage.js";
-import { createTasks, getTasksList } from "./tasksGateWay.js";
+import renderTasks from './renderTask';
+import { setItem } from './storage'; // getItem,
+import { createTasks, getTasksList } from './tasksGateWay';
 
-export const onCreateTask = () => {
-  const taskTitleInputElem = document.querySelector(".task-input");
+export default () => {
+  const taskTitleInputElem = document.querySelector('.task-input');
   const text = taskTitleInputElem.value;
   if (!text) {
     return;
   }
 
-  taskTitleInputElem.value = "";
+  taskTitleInputElem.value = '';
 
   const newTask = {
     text,
@@ -19,7 +19,7 @@ export const onCreateTask = () => {
   createTasks(newTask)
     .then(() => getTasksList())
     .then((newTasksList) => {
-      setItem("tasksList", newTasksList);
+      setItem('tasksList', newTasksList);
       renderTasks();
     });
 };
