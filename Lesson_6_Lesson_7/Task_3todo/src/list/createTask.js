@@ -1,16 +1,14 @@
-import renderTasks from './renderTask';
-import { setItem } from './storage'; // getItem,
-import { createTasks, getTasksList } from './tasksGateWay';
+import renderTasks from "./renderTask";
+import { setItem } from "./storage"; // getItem,
+import { createTasks, getTasksList } from "./tasksGateWay";
 
 export default () => {
-  const taskTitleInputElem = document.querySelector('.task-input');
-  const text = taskTitleInputElem.value;
-  if (!text) {
+  const inputVal = document.querySelector(".task-input").value;
+  if (inputVal === "") {
     return;
   }
 
-  taskTitleInputElem.value = '';
-
+  inputVal.value = "";
   const newTask = {
     text,
     done: false,
@@ -19,7 +17,7 @@ export default () => {
   createTasks(newTask)
     .then(() => getTasksList())
     .then((newTasksList) => {
-      setItem('tasksList', newTasksList);
+      setItem("tasksList", newTasksList);
       renderTasks();
     });
 };
